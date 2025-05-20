@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: track-plan
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn track_plan.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: track_plan.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        fromDatabase:
+          name: track-plan-db
+          property: connectionString
+databases:
+  - name: track-plan-db
+    databaseName: track_plan
+    user: track_plan_user
