@@ -1,0 +1,89 @@
+/* static/css/style.css */
+
+/* Навигационная панель */
+.navbar {
+    background: linear-gradient(to right, #1e3a8a, #3b82f6); /* Тёмно-синий градиент */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #facc15 !important; /* Жёлтый при наведении */
+}
+
+/* Кнопки */
+.btn-primary {
+    background-color: #16a34a; /* Зелёный */
+    border-color: #16a34a;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #15803d;
+    border-color: #15803d;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    background-color: #3b82f6; /* Синий */
+    border-color: #3b82f6;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc2626; /* Красный */
+    border-color: #dc2626;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+    border-color: #b91c1c;
+    transform: scale(1.05);
+}
+
+/* Список задач и привычек */
+.list-group-item {
+    border-left: 4px solid #3b82f6; /* Синяя полоса */
+    margin-bottom: 10px;
+    background-color: #f9fafb; /* Светлый фон */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.list-group-item:hover {
+    transform: translateY(-2px);
+}
+
+/* Завершённые задачи */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* Формы */
+.form-control {
+    border: 1px solid #d1d5db;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Контейнер */
+.container {
+    max-width: 800px; /* Более компактный контейнер */
+}
