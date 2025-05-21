@@ -5,6 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Task, Habit, HabitRecord
 from .forms import TaskForm, HabitForm
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 
 def register(request):
@@ -77,5 +79,14 @@ def habit_delete(request, pk):
     habit = get_object_or_404(Habit, pk=pk, user=request.user)
     habit.delete()
     return redirect('habit_list')
+
+
+def create_superuser(request):  # temporar
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            'admin', 'admin@example.com', 'adminpassword')
+        return HttpResponse("✅ Superuser created: admin / adminpassword")
+    else:
+        return HttpResponse("ℹ️ Superuser already exists.")
 
 # Create your views here.
