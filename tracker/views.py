@@ -87,22 +87,22 @@ def habit_delete(request, pk):
 
 
 # def register(request):
-#     try:
-#         if request.method == 'POST':
-#             form = RegistrationForm(request.POST)
-#             if form.is_valid():
-#                 user = form.save()
-#                 login(request, user)
-#                 return redirect('/')
-#         else:
-#             form = RegistrationForm()
-#         return render(request, 'register.html', {'form': form})
-#     except Exception as e:
-#         return HttpResponse(f"<h2>❌ Error during registration:</h2><pre>{str(e)}</pre>", status=500)
+    try:
+        if request.method == 'POST':
+            form = RegistrationForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request, user)  # <== достаточно просто передать user
+                return redirect('/')
+        else:
+            form = RegistrationForm()
+        return render(request, 'tracker/register.html', {'form': form})
+    except Exception as e:
+        return HttpResponse(f"<h2>❌ Error during registration:</h2><pre>{str(e)}</pre>", status=500)
 
 
-def register(request):
-    return render(request, 'tracker/register.html', {'form': RegistrationForm()})
+# def register(request):
+#     return render(request, 'tracker/register.html', {'form': RegistrationForm()})
 
 # def create_superuser(request):
 #     User = get_user_model()
