@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from tracker.views import register
 # from tracker.views import create_superuser
 # from tracker.views import run_migrations
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tracker.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', register, name='register'),
     # path('init-superuser/', create_superuser),
     # path('run-migrations/', run_migrations),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
