@@ -14,19 +14,19 @@ from django.http import HttpResponse
 # from django.core.management import call_command
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('task_list')
-    else:
-        form = UserCreationForm()
-    return render(request, 'tracker/register.html', {'form': form})
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=password)
+#             login(request, user)
+#             return redirect('task_list')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'tracker/register.html', {'form': form})
 
 
 @login_required
