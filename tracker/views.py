@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
+from django.core.management import call_command
 
 
 def register(request):
@@ -96,5 +97,13 @@ def create_superuser(request):
             return HttpResponse("ℹ️ Superuser already exists")
     except Exception as e:
         return HttpResponse(f"❌ Error: {str(e)}", status=500)
+
+
+def run_migrations(request):
+    try:
+        call_command('migrate')
+        return HttpResponse("✅ Migrations completed successfully.")
+    except Exception as e:
+        return HttpResponse(f"❌ Migration error: {str(e)}", status=500)
 
 # Create your views here.
