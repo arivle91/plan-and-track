@@ -86,13 +86,13 @@ def habit_delete(request, pk):
     return redirect('habit_list')
 
 
-# def register(request):
+def register(request):
     try:
         if request.method == 'POST':
             form = RegistrationForm(request.POST)
             if form.is_valid():
                 user = form.save()
-                login(request, user)  # <== достаточно просто передать user
+                login(request, user)
                 return redirect('/')
         else:
             form = RegistrationForm()
