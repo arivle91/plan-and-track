@@ -6,9 +6,9 @@ from .models import Task, Habit, HabitRecord
 from .forms import TaskForm, HabitForm
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
-from django.http import HttpResponse
-from django.core.management import call_command
+# from django.contrib.auth import get_user_model
+# from django.http import HttpResponse
+# from django.core.management import call_command
 
 
 def register(request):
@@ -83,27 +83,27 @@ def habit_delete(request, pk):
     return redirect('habit_list')
 
 
-def create_superuser(request):
-    User = get_user_model()
-    try:
-        if not User.objects.filter(username='admin').exists():
-            User.objects.create_superuser(
-                username='admin',
-                email='admin@example.com',
-                password='adminpassword'
-            )
-            return HttpResponse("✅ Superuser created: admin / adminpassword")
-        else:
-            return HttpResponse("ℹ️ Superuser already exists")
-    except Exception as e:
-        return HttpResponse(f"❌ Error: {str(e)}", status=500)
+# def create_superuser(request):
+#     User = get_user_model()
+#     try:
+#         if not User.objects.filter(username='admin').exists():
+#             User.objects.create_superuser(
+#                 username='admin',
+#                 email='admin@example.com',
+#                 password='adminpassword'
+#             )
+#             return HttpResponse("✅ Superuser created: admin / adminpassword")
+#         else:
+#             return HttpResponse("ℹ️ Superuser already exists")
+#     except Exception as e:
+#         return HttpResponse(f"❌ Error: {str(e)}", status=500)
 
 
-def run_migrations(request):
-    try:
-        call_command('migrate')
-        return HttpResponse("✅ Migrations completed successfully.")
-    except Exception as e:
-        return HttpResponse(f"❌ Migration error: {str(e)}", status=500)
+# def run_migrations(request):
+#     try:
+#         call_command('migrate')
+#         return HttpResponse("✅ Migrations completed successfully.")
+#     except Exception as e:
+#         return HttpResponse(f"❌ Migration error: {str(e)}", status=500)
 
 # Create your views here.
