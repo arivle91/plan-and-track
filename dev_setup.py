@@ -1,22 +1,28 @@
-from django.contrib.auth.models import User
-from django.core.management import call_command
 import os
 import django
 
-# Set the Django settings module
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plantrack.settings')
 
-# Setup Django
-django.setup()
+def main():
+    # 1) Устанавливаем DJANGO_SETTINGS_MODULE
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plantrack.settings')
+    # 2) Загружаем конфигурацию Django
+    django.setup()
 
-# Now import models and call_command AFTER setup
+    # 3) Только после setup — импортируем management и модели
+    from django.core.management import call_command
+    from django.contrib.auth.models import User
 
-# Run migrations
-call_command('migrate')
+    # 4) Применяем миграции
+    call_command('migrate')
 
-# Create a superuser if not already exists
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')
-    print("✅ Superuser created: admin / adminpass")
-else:
-    print("ℹ️ Superuser already exists.")
+    # 5) Создаём суперпользователя, если ещё нет
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            'admin', 'admin@example.com', 'adminpass')
+        print("✅ Superuser created: admin / adminpass")
+    else:
+        print("ℹ️ Superuser already exists.")
+
+
+if __name__ == '__main__':
+    main()
