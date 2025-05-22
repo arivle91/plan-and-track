@@ -3,15 +3,18 @@ from django.core.management import call_command
 import os
 import django
 
+# Set the Django settings module
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plantrack.settings')
+
+# Setup Django
 django.setup()
 
-# ⬇️ Импорт перенеси СЮДА — после django.setup()
+# Now import models and call_command AFTER setup
 
-# Apply migrations
+# Run migrations
 call_command('migrate')
 
-# Create superuser if not exists
+# Create a superuser if not already exists
 if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')
     print("✅ Superuser created: admin / adminpass")
