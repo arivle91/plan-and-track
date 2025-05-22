@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from tracker.views import register
+from django.http import HttpResponse
+import subprocess
 # from tracker.views import create_superuser
 # from tracker.views import run_migrations
 
@@ -30,3 +32,14 @@ urlpatterns = [
     # path('init-superuser/', create_superuser),
     # path('run-migrations/', run_migrations),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+def run_setup(request):
+    result = subprocess.run(['python', 'dev_setup.py'],
+                            capture_output=True, text=True)
+    return HttpResponse(f"<pre>{result.stdout or result.stderr}</pre>")
+
+
+urlpatterns += [
+    path("__setup__/", run_setup),
+]
