@@ -6,6 +6,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plantrack.settings')
 django.setup()
 
+# ⬇️ Импорт перенеси СЮДА — после django.setup()
 
 # Apply migrations
 call_command('migrate')
