@@ -5,8 +5,8 @@ pip install -r requirements.txt
 # Apply migrations
 python manage.py migrate
 
-# Create superuser if it doesn't exist
-python - << 'PYCODE'
+# Create superuser if it doesn't exist, using manage.py shell
+python manage.py shell << 'PYCODE'
 from django.contrib.auth.models import User
 
 if not User.objects.filter(username='admin').exists():
